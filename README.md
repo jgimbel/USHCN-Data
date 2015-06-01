@@ -91,9 +91,8 @@ To run this on spark we must simply import the HiveContext and run our sql queri
     >>> result = cxt.sql("SELECT date, avg(value) as average \
                           FROM prcp \
                           WHERE date like '%-12-22' \
-                          GROUP BY date \
-                          ORDER BY date;")
-    >>> for row in result:
+                          GROUP BY date ORDER BY date")
+    >>> for row in result.collect():
     ....    print(row.date.split('-')[0], row.average)
     ....
     <A very nice output goes here>
