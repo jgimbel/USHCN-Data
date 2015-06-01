@@ -62,7 +62,7 @@ To run this csv script simply...
 
 Once this is created I imported each file by running Hive's CLI, creating each database, and importing the data
 
-    hive
+    $ hive
     hive> CREATE TABLE PRCP (value INT, date STRING, measurement STRING, quality STRING, source STRING) 
         > ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
         
@@ -74,3 +74,29 @@ This is helpful in loading data, but not necessarily the smallest way to store d
         > STORED AS orc;
     hive> INSERT INTO TABLE precep SELECT * from prcp;
     
+I grabbed the warehouse out of hdfs to check how much ORC compressed that one file.  Turns out to be quite a lot.  The original csv file is 32MB large. The compressed orc system is a total of 5MB, so about 1/6 the size.
+
+###Running SQL queries###
+
+To start we must understand our problem.  Nebraska is large, and so there are many weather stations and groups that measure the amount of water it gets.  To get a good estimate for each day it rained an average can be taken. This means grouping our values by the date, then taking the average of those values.  In SQL this this is done like
+
+    SELECT date, avg(value) FROM prcp WHERE date like '%-12-22' GROUP BY date ORDER BY date;
+Luckily for us this translates to HiveQL exactly, so no changes are needed to run that from the CLI
+
+To run this on spark we must simply import the HiveContext and run our sql queries
+
+    $ pyspark
+    >>> from pyspark.sql import HiveContext
+    >>> cxt = HiveContext(sc)  #sc is your sparkContext, create for you when pyspark starts
+    >>> result = cxt.sql("SELECT date, avg(value) as average \
+                          FROM prcp \
+                          WHERE date like '%-12-22' \
+                          GROUP BY date \
+                          ORDER BY date;")
+    >>> for row in result:
+    ....    print(row.date.split('-')[0], row.average)
+    ....
+    <A very nice output goes here>
+    >>>exit()
+    
+The important question that still remains is how did converting to orc change our query?  From running the same query on both th csv file and the ORC file, they both ran at about 20 seconds per query, with csv having just Milliseconds faster time.
