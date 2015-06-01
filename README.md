@@ -36,7 +36,7 @@ First download and decompress the gzip file
     wget http://cdiac.ornl.gov/ftp/ushcn_daily/state25_NE.txt.gz
     gzip -d state25_NE.txt.gz
 Then we need to format the data to import it into Hive.
-The data is formatted with a entire month worth of data in one record.
+The data is formatted with an entire month worth of data in one record.
 To help understand each row, this is the json equivalent:
 
     {
