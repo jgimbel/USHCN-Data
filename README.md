@@ -98,5 +98,7 @@ To run this on spark we must simply import the HiveContext and run our sql queri
     ....
     <A very nice output goes here>
     >>>exit()
-    
+Or just run the script in this repo
+
+    $ ./SparkHiveQuery.py
 The important question that still remains is how did converting to orc change our query?  From running the same query on both th csv file and the ORC file, they both ran at about 20 seconds per query, with csv having just Milliseconds faster time.
