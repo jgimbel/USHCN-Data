@@ -11,5 +11,5 @@ result = cxt.sql("SELECT date, avg(value) as average \
 
 with open("precep.csv", "wb") as prep:
     for row in result:
-        prep.write("{},{}\n" % (row.date.split("-")[0], row.average))
+        prep.write(row.date.split("-")[0] + "," + str(row.average) + "\n")
         print(row.date.split("-")[0], row.average)
