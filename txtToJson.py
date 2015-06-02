@@ -1,4 +1,4 @@
-f = open("/home/joel/state25_NE.txt")
+f = open("state25_NE.txt")
 months = []
 for line in f:
     m = dict()
@@ -28,6 +28,6 @@ for line in f:
     months.append(m)
 
 import json
-with open("/home/joel/output.json", "wb") as out:
+with open("output.json", "wb") as out:
     json.dump(months, out)
 f.close()

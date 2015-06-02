@@ -1,9 +1,9 @@
 import csv
-PRCP = open("/home/joel/PRCP.csv", "wb")
-SNOW = open("/home/joel/SNOW.csv", "wb")
-SNWD = open("/home/joel/SNWD.csv", "wb")
-TMAX = open("/home/joel/TMAX.csv", "wb")
-TMIN = open("/home/joel/TMIN.csv", "wb")
+PRCP = open("PRCP.csv", "wb")
+SNOW = open("SNOW.csv", "wb")
+SNWD = open("SNWD.csv", "wb")
+TMAX = open("TMAX.csv", "wb")
+TMIN = open("TMIN.csv", "wb")
 
 PRCPWriter = csv.writer(PRCP)
 SNOWWriter = csv.writer(SNOW)
@@ -11,7 +11,7 @@ SNWDWriter = csv.writer(SNWD)
 TMAXWriter = csv.writer(TMAX)
 TMINWriter = csv.writer(TMIN)
 
-f = open("/home/joel/state25_NE.txt")
+f = open("state25_NE.txt")
 for line in f:
     code = line[0:6]
     year = line[6:10]
