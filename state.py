@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import csv
 PRCP = open("PRCP.csv", "wb")
 SNOW = open("SNOW.csv", "wb")
