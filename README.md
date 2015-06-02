@@ -36,7 +36,7 @@ First download and decompress the gzip file
     wget http://cdiac.ornl.gov/ftp/ushcn_daily/state25_NE.txt.gz
     gzip -d state25_NE.txt.gz
 Then we need to format the data to import it into Hive.
-The data is formatted with a entire month worth of data in one record.
+The data is formatted with an entire month worth of data in one record.
 To help understand each row, this is the json equivalent:
 
     {
@@ -91,14 +91,13 @@ To run this on spark we must simply import the HiveContext and run our sql queri
     >>> result = cxt.sql("SELECT date, avg(value) as average \
                           FROM prcp \
                           WHERE date like '%-12-22' \
-                          GROUP BY date \
-                          ORDER BY date;")
-    >>> for row in result:
+                          GROUP BY date ORDER BY date")
+    >>> for row in result.collect():
     ....    print(row.date.split('-')[0], row.average)
     ....
     <A very nice output goes here>
     >>>exit()
-Or just run the script in this repo
+Or if you have pyspark in your PYTHONPATH, just run the script in this repo
 
     $ ./SparkHiveQuery.py
 The important question that still remains is how did converting to orc change our query?  From running the same query on both th csv file and the ORC file, they both ran at about 20 seconds per query, with csv having just Milliseconds faster time.
