@@ -17,7 +17,7 @@ for line in f:
         d = dict()
         d['value'] = int(day[:5].strip())
 
-        d['date'] = "{}-{}-{}".format(m['year'], m['month'], date+1)
+        d['date'] = "{0}-{1}-{2}".format(m['year'], m['month'], date+1)
         if day[5:6] != ' ':
             d['measure'] = day[5:6]
         if day[6:7] != ' ':
