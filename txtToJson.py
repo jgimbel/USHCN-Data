@@ -1,3 +1,4 @@
+#!/usr/bin/python
 f = open("state25_NE.txt")
 months = []
 for line in f:
