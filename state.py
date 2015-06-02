@@ -31,7 +31,7 @@ for line in f:
 
         d = list()
         d.append(int(day[:5].strip()))
-        d.append("{}-{}-{}".format(year, month, date+1))
+        d.append("{0}-{1}-{2}".format(year, month, date+1))
         d.append(day[5:6] if day[5:6] != ' ' else '')
         d.append(day[6:7] if day[6:7] != ' ' else '')
         d.append(day[7:8] if day[7:8] != ' ' else '')
