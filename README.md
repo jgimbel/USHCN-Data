@@ -1,7 +1,7 @@
 # USHCN-Data
-##Finding the average amount of precipitation per day
+## Finding the average amount of precipitation per day
 
-###Setting up a virtual box
+### Setting up a virtual box
 First install virtualbox
 
 In Arch Linux
@@ -30,7 +30,7 @@ Now simply ssh into the virtualbox
 
     ssh -p 2222 root@localhost
     
-###Loading data into Hive###
+### Loading data into Hive
 First download and decompress the gzip file
 
     wget http://cdiac.ornl.gov/ftp/ushcn_daily/state25_NE.txt.gz
@@ -76,7 +76,7 @@ This is helpful in loading data, but not necessarily the smallest way to store d
     
 I grabbed the warehouse out of hdfs to check how much ORC compressed that one file.  Turns out to be quite a lot.  The original csv file is 32MB large. The compressed orc system is a total of 5MB, so about 1/6 the size.
 
-###Running SQL queries###
+### Running SQL queries
 
 To start we must understand our problem.  Nebraska is large, and so there are many weather stations and groups that measure the amount of water it gets.  To get a good estimate for each day it rained an average can be taken. This means grouping our values by the date, then taking the average of those values.  In SQL this this is done like
 
