@@ -1,7 +1,7 @@
-# USHCN-Data#
-##Finding the average amount of precipitation per day##
+# USHCN-Data
+##Finding the average amount of precipitation per day
 
-###Setting up a virtual box###
+###Setting up a virtual box
 First install virtualbox
 
 In Arch Linux
